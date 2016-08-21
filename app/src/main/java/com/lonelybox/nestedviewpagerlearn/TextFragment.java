@@ -14,25 +14,19 @@ import java.util.Random;
 public class TextFragment extends Fragment {
 
     private int mPosition;
+    private boolean mIsChild;
 
     public TextFragment() {
         // Required empty public constructor
     }
 
-    public static TextFragment newInstance(int position) {
+    public static TextFragment newInstance(int position, boolean isChild) {
         TextFragment fragment = new TextFragment();
         Bundle args = new Bundle();
         args.putInt("position", position);
+        args.putBoolean("ischild", isChild);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mPosition = getArguments().getInt("position");
-        }
     }
 
     @Override
@@ -41,9 +35,20 @@ public class TextFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_text, container, false);
         TextView txtView = (TextView) v.findViewById(R.id.txt_view);
 
-        txtView.setText(
-                String.format("Fragment : %s", mPosition)
-        );
+        if (getArguments() != null) {
+            mPosition = getArguments().getInt("position");
+            mIsChild = getArguments().getBoolean("ischild");
+        }
+
+        if (mIsChild) {
+            txtView.setText(
+                    String.format("Child Fragment : %s", mPosition)
+            );
+        } else {
+            txtView.setText(
+                    String.format("Parent Fragment : %s", mPosition)
+            );
+        }
 
         Random rnd = new Random();
         int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));

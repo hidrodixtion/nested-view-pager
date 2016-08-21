@@ -23,7 +23,7 @@ public class ChildAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        TextFragment fragment = TextFragment.newInstance(position);
+        TextFragment fragment = TextFragment.newInstance(position, true);
         Log.v("ChildAdapter", fragment + "");
         return fragment;
     }

@@ -26,7 +26,7 @@ public class ParentAdapter extends FragmentPagerAdapter {
         if (position == 1) {
             return ViewPagerFragment.newInstance();
         } else {
-            return TextFragment.newInstance(position);
+            return TextFragment.newInstance(position, false);
         }
     }
 
