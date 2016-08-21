@@ -1,6 +1,7 @@
 package com.lonelybox.nestedviewpagerlearn;
 
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,5 +28,11 @@ public class MainActivity extends AppCompatActivity {
         vp.setAdapter(adapter);
         vp.setOffscreenPageLimit(3);
         tl.setupWithViewPager(vp);
+
+        if (tl.getTabCount() > 2) {
+            tl.getTabAt(0).setIcon(android.R.drawable.ic_dialog_alert);
+            tl.getTabAt(1).setIcon(android.R.drawable.ic_dialog_info);
+            tl.getTabAt(2).setIcon(android.R.drawable.ic_dialog_email);
+        }
     }
 }
